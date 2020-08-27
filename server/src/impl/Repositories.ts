@@ -15,15 +15,16 @@ export class InMemoryUserRepository implements UserRepository {
     private users: User[] = []
     private sequence = new Sequence()
 
-    add(name: string, created: Date): number {
+    add(name: string, chatId: number, created: Date): User {
         const newUser: User = {
             id: this.sequence.get(),
             name: name,
-            created: created
+            created: created,
+            chatId: chatId
         }
         this.users.push(newUser)
 
-        return newUser.id;
+        return newUser;
     }
 
     get(id: number): User {
@@ -33,6 +34,10 @@ export class InMemoryUserRepository implements UserRepository {
         }
 
         return user
+    }
+
+    getByChatId(chatId: number): User[] {
+        return this.users.filter(u => u.chatId === chatId)
     }
 
     update(id: number, name: string): void {
@@ -75,7 +80,7 @@ export class InMemoryChatRepository implements ChatRepository {
     private chats: Chat[] = []
     private sequence = new Sequence()
 
-    add(key: string, created: Date): void {
+    add(key: string, name: string, created: Date): void {
         if (this.chats.some(c => c.key === key)) {
             throw Error(`Chat with key ${key} already exists`)
         }
@@ -83,7 +88,8 @@ export class InMemoryChatRepository implements ChatRepository {
         const newChat: Chat = {
             id: this.sequence.get(),
             key: key,
-            created: created
+            created: created,
+            name: name
         }
         this.chats.push(newChat)
     }
@@ -106,4 +112,7 @@ export class InMemoryChatRepository implements ChatRepository {
         return chat
     }
 
+    isKeyAvailable(key: string): boolean {
+        return !this.chats.some(c => c.key === key)
+    }
 }

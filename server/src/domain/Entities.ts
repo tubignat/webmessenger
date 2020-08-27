@@ -1,5 +1,6 @@
 export interface User {
     id: number
+    chatId: number
     name: string
     created: Date
 }
@@ -15,5 +16,6 @@ export interface Message {
 export interface Chat {
     id: number
     key: string
+    name: string
     created: Date
 }

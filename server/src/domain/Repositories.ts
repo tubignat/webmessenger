@@ -2,7 +2,8 @@ import {Chat, Message, User} from "./Entities";
 
 export interface UserRepository {
     get: (id: number) => User
-    add: (name: string, created: Date) => number
+    getByChatId: (chatId: number) => User[]
+    add: (name: string, chatId: number, created: Date) => User
     update: (id: number, name: string) => void
 }
 
@@ -13,7 +14,8 @@ export interface MessageRepository {
 }
 
 export interface ChatRepository {
-    add: (key: string, created: Date) => void
+    add: (key: string, name: string, created: Date) => void
     get: (id: number) => Chat
     getByKey: (key: string) => Chat
+    isKeyAvailable: (key: string) => boolean
 }
