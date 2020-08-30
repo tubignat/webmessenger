@@ -1,9 +1,11 @@
-import {Chat, User} from "./Api";
+import {Chat, Message, User} from "./Api";
 
 export interface ChatData {
     meta?: Chat
     myUser?: User & { token: string }
     members?: User[]
+    messages?: Message[]
+    eventId?: number
 }
 
 export interface Subscription {

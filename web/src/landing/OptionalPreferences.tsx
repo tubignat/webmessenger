@@ -67,6 +67,7 @@ export function OptionalPreferences(props: OptionalPreferencesProps) {
             shouldMatchRegex={linkRegex}
             customIsAllowed={isKeyAllowed}
             width={inputsWidth}
+            autoFocus
         />
 
         <Gap size={24}/>

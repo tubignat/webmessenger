@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {Gap} from "../components/Gap";
-import {Colors} from "../common/Colors";
+import {Gap} from "../../components/Gap";
+import {Colors} from "../../common/Colors";
 
 const Header = styled.div`
     font-size: 16px;

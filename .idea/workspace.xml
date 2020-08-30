@@ -14,11 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1d48469-6168-4ecd-9c4b-a96e9dc99a7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/impl/ChatServiceImpl.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/impl/EventsIdSequence.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/impl/InMemorySequence.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/api/Controllers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/Controllers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/Middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/Middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/domain/Entities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Entities.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/domain/Repositories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Repositories.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/domain/Services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Services.ts" afterDir="false" />
@@ -46,7 +47,7 @@
     <property name="javascript.nodejs.core.library.typings.version" value="12.12.54" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/src/chat/room" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -63,11 +64,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/src/chat" />
       <recent name="$PROJECT_DIR$/web/src/common" />
+      <recent name="$PROJECT_DIR$/web/src/chat/room" />
+      <recent name="$PROJECT_DIR$/web/src/chat" />
       <recent name="$PROJECT_DIR$/web/src/domain" />
       <recent name="$PROJECT_DIR$/web/src/Landing" />
-      <recent name="$PROJECT_DIR$/web/src/components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/chat/room" />
     </key>
   </component>
   <component name="RunManager">
@@ -123,6 +127,9 @@
       <workItem from="1598461035833" duration="72000" />
       <workItem from="1598461127406" duration="41000" />
       <workItem from="1598461178294" duration="19522000" />
+      <workItem from="1598550382158" duration="774000" />
+      <workItem from="1598707172140" duration="4172000" />
+      <workItem from="1598718314949" duration="17026000" />
     </task>
     <servers />
   </component>
@@ -170,26 +177,30 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1018" y="474" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1597846382095" />
-    <state width="2539" height="353" key="GridCell.Tab.0.bottom" timestamp="1598540811647">
+    <state width="2539" height="264" key="GridCell.Tab.0.bottom" timestamp="1598807416703">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="353" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598540811647" />
-    <state width="2539" height="353" key="GridCell.Tab.0.bottom/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598474412504" />
-    <state width="2539" height="353" key="GridCell.Tab.0.center" timestamp="1598540811646">
+    <state width="1771" height="264" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1598718395116" />
+    <state width="2539" height="264" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807416703" />
+    <state width="2539" height="264" key="GridCell.Tab.0.bottom/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912150" />
+    <state width="2539" height="264" key="GridCell.Tab.0.center" timestamp="1598807416702">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="353" key="GridCell.Tab.0.center/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598540811646" />
-    <state width="2539" height="353" key="GridCell.Tab.0.center/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598474412503" />
-    <state width="2539" height="353" key="GridCell.Tab.0.left" timestamp="1598540811645">
+    <state width="1771" height="264" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1598718395115" />
+    <state width="2539" height="264" key="GridCell.Tab.0.center/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807416702" />
+    <state width="2539" height="264" key="GridCell.Tab.0.center/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912148" />
+    <state width="2539" height="264" key="GridCell.Tab.0.left" timestamp="1598807416701">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="353" key="GridCell.Tab.0.left/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598540811645" />
-    <state width="2539" height="353" key="GridCell.Tab.0.left/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598474412502" />
-    <state width="2539" height="353" key="GridCell.Tab.0.right" timestamp="1598540811646">
+    <state width="1771" height="264" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1598718395114" />
+    <state width="2539" height="264" key="GridCell.Tab.0.left/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807416701" />
+    <state width="2539" height="264" key="GridCell.Tab.0.left/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912147" />
+    <state width="2539" height="264" key="GridCell.Tab.0.right" timestamp="1598807416702">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="353" key="GridCell.Tab.0.right/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598540811646" />
-    <state width="2539" height="353" key="GridCell.Tab.0.right/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598474412503" />
+    <state width="1771" height="264" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1598718395116" />
+    <state width="2539" height="264" key="GridCell.Tab.0.right/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807416702" />
+    <state width="2539" height="264" key="GridCell.Tab.0.right/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912149" />
     <state width="2539" height="520" key="GridCell.Tab.1.bottom" timestamp="1597907340650">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -250,6 +261,10 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="781" y="359" key="SettingsEditor/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598461200862" />
+    <state x="1078" y="641" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598805658985">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1078" y="641" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598805658985" />
     <state x="820" y="456" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597832540691">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -258,15 +273,15 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="981" y="352" width="598" height="735" key="find.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598182248673" />
-    <state x="945" y="291" key="run.anything.popup" timestamp="1598527967151">
-      <screen x="0" y="23" width="2560" height="1417" />
-    </state>
-    <state x="945" y="291" key="run.anything.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598461070484" />
-    <state x="945" y="291" key="run.anything.popup/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598527967151" />
-    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1598529881431">
+    <state x="945" y="291" key="run.anything.popup" timestamp="1598711255835">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598529881431" />
+    <state x="945" y="291" key="run.anything.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598711255835" />
+    <state x="945" y="291" key="run.anything.popup/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598527967151" />
+    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1598807446589">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807446589" />
     <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1597832315480" />
   </component>
   <component name="XDebuggerManager">

@@ -1,30 +1,22 @@
 import {ChatRepository, MessageRepository, UserRepository} from "../domain/Repositories";
 import {Chat, Message, User} from "../domain/Entities";
-
-
-class Sequence {
-    private current = -1
-
-    get(): number {
-        this.current++
-        return this.current
-    }
-}
+import {InMemorySequence} from "./InMemorySequence";
 
 export class InMemoryUserRepository implements UserRepository {
     private users: User[] = []
-    private sequence = new Sequence()
+    private sequence = new InMemorySequence()
 
-    add(name: string, chatId: number, created: Date): User {
+    add(name: string, chatId: number, created: Date, eventId: number): User {
         const newUser: User = {
             id: this.sequence.get(),
             name: name,
             created: created,
-            chatId: chatId
+            chatId: chatId,
+            eventId: eventId
         }
         this.users.push(newUser)
 
-        return newUser;
+        return newUser
     }
 
     get(id: number): User {
@@ -36,51 +28,51 @@ export class InMemoryUserRepository implements UserRepository {
         return user
     }
 
-    getByChatId(chatId: number): User[] {
-        return this.users.filter(u => u.chatId === chatId)
+    getByChatId(chatId: number, afterEventId?: number): User[] {
+        const evtId = afterEventId ?? -1
+        return this.users.filter(u => u.chatId === chatId && u.eventId > evtId)
     }
 
-    update(id: number, name: string): void {
+    update(id: number, name: string, eventId: number): void {
         const index = this.users.findIndex(u => u.id === id)
         if (index === -1) {
             throw Error(`No user with id ${id} found`)
         }
 
         this.users[index].name = name
+        this.users[index].eventId = eventId
     }
 }
 
 export class InMemoryMessageRepository implements MessageRepository {
     private messages: Message[] = []
-    private sequence = new Sequence()
+    private sequence = new InMemorySequence()
 
-    add(text: string, userId: number, chatId: number, timestamp: Date): number {
+    add(text: string, userId: number, chatId: number, timestamp: Date, eventId: number): number {
         const newMessage: Message = {
             id: this.sequence.get(),
             text: text,
             userId: userId,
             chatId: chatId,
-            timestamp: timestamp
+            timestamp: timestamp,
+            eventId: eventId
         }
         this.messages.push(newMessage)
 
         return newMessage.id;
     }
 
-    getAfter(chatId: number, id: number): Message[] {
-        return this.messages.filter(m => m.chatId === chatId && m.id > id);
-    }
-
-    getAll(chatId: number): Message[] {
-        return this.messages.filter(m => m.chatId === chatId);
+    getAll(chatId: number, afterEventId?: number): Message[] {
+        const evtId = afterEventId ?? -1
+        return this.messages.filter(m => m.chatId === chatId && m.eventId > evtId);
     }
 }
 
 export class InMemoryChatRepository implements ChatRepository {
     private chats: Chat[] = []
-    private sequence = new Sequence()
+    private sequence = new InMemorySequence()
 
-    add(key: string, name: string, created: Date): void {
+    add(key: string, name: string, created: Date, eventId: number): void {
         if (this.chats.some(c => c.key === key)) {
             throw Error(`Chat with key ${key} already exists`)
         }
@@ -89,7 +81,8 @@ export class InMemoryChatRepository implements ChatRepository {
             id: this.sequence.get(),
             key: key,
             created: created,
-            name: name
+            name: name,
+            eventId: eventId
         }
         this.chats.push(newChat)
     }

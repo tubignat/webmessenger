@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {WelcomeDialog} from "./WelcomeDialog";
 import {ChatData, GlobalChatStorage} from "../common/ChatStorage";
-import {ChatRoom} from "./ChatRoom";
+import {ChatRoom} from "./room/ChatRoom";
 
 export function Chat() {
     const chatKey = useMemo(getChatKey, [])

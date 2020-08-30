@@ -1,8 +1,6 @@
 import React, {forwardRef, useImperativeHandle, useRef, useState} from "react";
 import styled from "styled-components";
-import {Gap} from "./Gap";
 import {Colors} from "../common/Colors";
-
 
 interface InputContainerProps {
     invalid: boolean
@@ -11,11 +9,7 @@ interface InputContainerProps {
     minHeight?: string
 }
 
-interface LabelProps {
-    invalid: boolean
-}
-
-interface StyledInputProps {
+interface StyledTextAreaProps {
     fontSize: string
     height?: string
 }
@@ -24,21 +18,22 @@ interface InputProps {
     value: string
     onChange: (value: string) => void
     autoFocus?: boolean
-    label?: string
+    onFocus?: () => void
+    onBlur?: () => void
     fontSize?: string
     width?: string
     height?: string
     minHeight?: string
     invalid?: boolean
-    prefix?: string
     placeholder?: string
-    type?: string
     charLimit?: number
     shouldMatchRegex?: RegExp
     customIsAllowed?: (value: string) => boolean
 }
 
-const StyledInput = styled.input<StyledInputProps>`
+const StyledTextArea = styled.textarea<StyledTextAreaProps>`
+    font-family: Segoe UI,Helvetica Neue,Roboto,Arial,Liberation Sans,Nimbus Sans L,sans-serif;
+    resize: none;
     border: 0px;
     background-color: transparent;
     padding: 0px;
@@ -46,6 +41,7 @@ const StyledInput = styled.input<StyledInputProps>`
     font-size: ${props => props.fontSize};
     height: ${props => props.height};
     line-height: 1.2;
+    transition: .2s height;
     flex-grow: 1;
     
     &:focus {
@@ -68,8 +64,9 @@ const InputContainer = styled.div<InputContainerProps>`
     display: flex;
     background-color: ${Colors.background};
     cursor: text; 
-    align-items: center;
-    transition: .1s border, .5s height;
+    align-items: flex-start;
+    overflow: hidden;
+    transition: .1s border, .2s height;
     
     &:focus-within {
         outline: 0;
@@ -77,58 +74,52 @@ const InputContainer = styled.div<InputContainerProps>`
     }
 `
 
-const Prefix = styled.div`
-    color: ${Colors.secondaryText};
-    font-size: 16px;
-    line-height: 1.2;
-`
-
-const Label = styled.div<LabelProps>`
-    color: ${props => props.invalid ? Colors.danger : Colors.primaryText};
-    font-size: 16px;
-    margin-left: 8px;
-`
-
-function InputInner(props: InputProps, ref: any) {
-    const inputRef = useRef<HTMLInputElement>(null)
+function TextAreaInner(props: InputProps, ref: any) {
+    const inputRef = useRef<HTMLTextAreaElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [height, setHeight] = useState('')
     useImperativeHandle(ref, () => ({
         focus: () => inputRef?.current?.focus()
     }));
-    return <div style={{width: props.width}}>
-        {
-            props.label && <Label invalid={props.invalid ?? false}>{props.label}</Label>
-        }
-        {
-            props.label && <Gap size={8}/>
-        }
-        <InputContainer invalid={props.invalid ?? false} onClick={() => inputRef?.current?.focus?.()}
-                        width={props.width} height={props.height} minHeight={props.minHeight}>
-            <Prefix>{props.prefix}</Prefix>
-            <StyledInput
-                ref={inputRef}
-                placeholder={props.placeholder}
-                value={props.value}
-                onChange={onChange}
-                autoComplete='new-password'
-                type={props.type ?? 'text'}
-                fontSize={props.fontSize ?? '16px'}
-                autoFocus={props.autoFocus}
-            />
-        </InputContainer>
-    </div>
+    return <InputContainer
+        ref={containerRef}
+        invalid={props.invalid ?? false}
+        onClick={() => inputRef?.current?.focus?.()}
+        width={props.width}
+        height={height ? height : props.height}
+        minHeight={props.minHeight}
+        onScroll={_ => containerRef?.current && (containerRef.current.scrollTop = 0)}>
+        <StyledTextArea
+            ref={inputRef}
+            rows={1}
+            placeholder={props.placeholder}
+            value={props.value}
+            onChange={onChange}
+            onFocus={props.onFocus}
+            onBlur={props.onBlur}
+            fontSize={props.fontSize ?? '16px'}
+            autoFocus={props.autoFocus}
+        />
+    </InputContainer>
 
-    function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const value = props.charLimit && e.target.value.length > props.charLimit
-            ? e.target.value.slice(0, props.charLimit)
-            : e.target.value
+    function onChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        const area = e.target
+        const value = props.charLimit && area.value.length > props.charLimit
+            ? area.value.slice(0, props.charLimit)
+            : area.value
+        area.value = value
 
         if (isValid(value, props.shouldMatchRegex, props.customIsAllowed)) {
+            area.style.height = 'auto'
+            area.style.height = area.scrollHeight + 'px'
+            setHeight((area.scrollHeight + 20) + 'px')
+
             props.onChange(value)
         }
     }
 }
 
-export const Input = forwardRef(InputInner)
+export const TextArea = forwardRef(TextAreaInner)
 
 function isValid(value: string, shouldMatchRegex: RegExp | undefined, customIsAllowed: ((v: string) => boolean) | undefined): boolean {
     if (!value) {

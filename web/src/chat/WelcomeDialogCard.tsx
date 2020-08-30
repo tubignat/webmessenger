@@ -2,10 +2,11 @@ import {Input} from "../components/Input";
 import {Gap} from "../components/Gap";
 import {Centered} from "../components/Centered";
 import {Button} from "../components/Button";
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {Colors} from "../common/Colors";
 import {ChatHeader} from "../components/ChatHeader";
+import {GlobalShortcutManager, Keys} from "../common/ShortcutManager";
 
 const Container = styled.div`
     background-color: ${Colors.secondaryBackground};
@@ -25,6 +26,11 @@ interface WelcomeDialogCardProps {
 }
 
 export function WelcomeDialogCard(props: WelcomeDialogCardProps) {
+    useEffect(() => {
+        const shortcut = GlobalShortcutManager.register([Keys.enter], props.onJoinClick)
+        return () => GlobalShortcutManager.unregister(shortcut)
+    }, [props.onJoinClick])
+
     return <Container>
         <Centered>
             <ChatHeader chatName={props.chatName} chatKey={props.chatKey} />
@@ -36,6 +42,7 @@ export function WelcomeDialogCard(props: WelcomeDialogCardProps) {
                 width='320px'
                 placeholder={props.defaultName}
                 charLimit={75}
+                autoFocus
             />
 
             <Gap size={48}/>

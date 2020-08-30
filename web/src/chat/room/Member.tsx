@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {Gap} from "../components/Gap";
-import {Colors} from "../common/Colors";
-import {Row} from "../components/Row";
-import {Column} from "../components/Column";
-import {Spring} from "../components/Spring";
+import {Gap} from "../../components/Gap";
+import {Colors} from "../../common/Colors";
+import {Row} from "../../components/Row";
+import {Column} from "../../components/Column";
+import {Spring} from "../../components/Spring";
 
 interface MemberProps {
     name: string

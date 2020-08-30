@@ -3,6 +3,7 @@ export interface User {
     chatId: number
     name: string
     created: Date
+    eventId: number
 }
 
 export interface Message {
@@ -11,6 +12,7 @@ export interface Message {
     userId: number
     chatId: number
     timestamp: Date
+    eventId: number
 }
 
 export interface Chat {
@@ -18,4 +20,12 @@ export interface Chat {
     key: string
     name: string
     created: Date
+    eventId: number
+}
+
+export interface Updates {
+    meta?: Chat
+    members: User[]
+    messages: Message[]
+    latestEventId: number
 }

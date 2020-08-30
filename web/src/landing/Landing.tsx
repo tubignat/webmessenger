@@ -1,5 +1,5 @@
-import React, {useMemo, useState} from 'react';
-import {generateKey, generateName} from "../domain/DefaultPreferences";
+import React, {useEffect, useMemo, useState} from 'react';
+import {generateKey, generateName} from "../common/DefaultPreferences";
 import {Redirect} from 'react-router-dom';
 import {Button} from "../components/Button";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import {Gap} from "../components/Gap";
 import {Colors} from "../common/Colors";
 import {OptionalPreferences} from "./OptionalPreferences";
 import {Api} from "../common/Api";
+import {GlobalShortcutManager, Keys} from "../common/ShortcutManager";
 
 const Container = styled.div`
     padding: 80px;
@@ -37,6 +38,11 @@ export function Landing() {
     const [userPreferences, setUserPreferences] = useState({key: '', name: '', password: ''})
     const [arePreferencesValid, setArePreferencesValid] = useState(true)
 
+    useEffect(() => {
+        const shortcut = GlobalShortcutManager.register([Keys.enter], createChat)
+        return () => GlobalShortcutManager.unregister(shortcut)
+    }, [userPreferences])
+
     if (redirectTo) {
         return <Redirect to={redirectTo} push/>
     }
@@ -52,7 +58,7 @@ export function Landing() {
 
         <Gap size={64}/>
 
-        <Button size='big' disabled={!arePreferencesValid} onClick={onCreateChat}>Create chat</Button>
+        <Button size='big' disabled={!arePreferencesValid} onClick={createChat}>Create chat</Button>
 
         <Gap size={64}/>
 
@@ -64,7 +70,7 @@ export function Landing() {
         />
     </Container>
 
-    function onCreateChat() {
+    function createChat() {
         const chatKey = userPreferences.key ? userPreferences.key : defaultPreferences.key
         const chatName = userPreferences.name ? userPreferences.name : defaultPreferences.name
         Api.createChat(chatKey, chatName)

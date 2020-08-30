@@ -21,15 +21,16 @@ export interface User {
     created: Date
 }
 
-export interface LoadChatResponse {
-    chat: any
-    messages: Message[]
-}
-
 export interface JoinChatResponse {
     user: User
     token: string
+}
+
+export interface LoadUpdatesResponse {
+    meta?: Chat
     members: User[]
+    messages: Message[]
+    latestEventId: number
 }
 
 export const Api = {
@@ -54,10 +55,6 @@ export const Api = {
         }).then(response => response.json())
     },
 
-    loadChat: (key: string): Promise<LoadChatResponse> => {
-        return fetch(`${baseURL}/api/loadChat?key=${key}`).then(response => response.json())
-    },
-
     loadChatMeta: (key: string): Promise<Chat> => {
         return fetch(`${baseURL}/api/loadChatMeta?key=${key}`).then(response => response.json())
     },
@@ -66,7 +63,7 @@ export const Api = {
         return fetch(`${baseURL}/api/isKeyAvailable?key=${key}`).then(response => response.json())
     },
 
-    loadNewMessages: (key: string, lastMessageId: number): Promise<Message[]> => {
-        return fetch(`${baseURL}/api/loadNewMessages?key=${key}&lastMessageId=${lastMessageId}`).then(response => response.json())
+    loadUpdates: (chatId: number, afterEventId: number): Promise<LoadUpdatesResponse> => {
+        return fetch(`${baseURL}/api/loadUpdates?chatId=${chatId}&afterEventId=${afterEventId}`).then(response => response.json())
     }
 }

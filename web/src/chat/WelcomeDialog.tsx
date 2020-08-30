@@ -75,7 +75,6 @@ export function WelcomeDialog(props: WelcomeDialogProps) {
                         const response = await Api.joinChat(props.chatData.meta.id, chosenName)
                         GlobalChatStorage.update(props.chatKey, {
                             myUser: {...response.user, token: response.token},
-                            members: response.members
                         })
                     }
                 }

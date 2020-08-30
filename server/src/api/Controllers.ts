@@ -1,27 +1,23 @@
 import {controller} from "./Controller";
 import {exceptionMiddleware, responseHeaderMiddleware} from "./Middleware";
 import {InMemoryChatRepository, InMemoryMessageRepository, InMemoryUserRepository} from "../impl/Repositories";
-import {ChatService} from "../domain/Services";
 import crypto from 'crypto'
+import {ChatServiceImpl} from "../impl/ChatServiceImpl";
 
 const usr = new InMemoryUserRepository()
 const msg = new InMemoryMessageRepository()
 const chats = new InMemoryChatRepository()
 
-const service = new ChatService(usr, msg, chats)
+const service = new ChatServiceImpl(usr, msg, chats)
 const salt = "$adg121nbig0&^*^12bcx,l;1235i80"
 
-export const loadChat = controller([responseHeaderMiddleware, exceptionMiddleware], (context) => {
-    const key = context.request.query["key"] as string
 
-    if (chats.isKeyAvailable(key.toLowerCase())) {
-        return {
-            statusCode: 404,
-            data: null
-        }
-    }
+export const loadUpdates = controller([responseHeaderMiddleware, exceptionMiddleware], (context) => {
+    const chatId = Number.parseInt(context.request.query["chatId"] as string)
+    const afterEventId = Number.parseInt(context.request.query["afterEventId"] as string)
 
-    const result = service.loadChat(key.toLowerCase())
+    const result = service.loadUpdates(chatId, afterEventId)
+
     return {
         statusCode: 200,
         data: result
@@ -49,26 +45,13 @@ export const joinChat = controller([responseHeaderMiddleware, exceptionMiddlewar
     const {name, chatId} = JSON.parse(context.request.body)
 
     const user = service.joinChat(chatId, name)
-    const members = service.getMembers(chatId)
 
     return {
         statusCode: 200,
         data: {
             user: user,
             token: generateToken(chatId, user.id, salt),
-            members: members
         }
-    }
-})
-
-export const loadNewMessages = controller([responseHeaderMiddleware, exceptionMiddleware], context => {
-    const key = context.request.query["key"] as string
-    const lastMessageId = Number.parseInt(context.request.query["lastMessageId"] as string)
-
-    const result = service.loadNewMessages(key.toLowerCase(), lastMessageId)
-    return {
-        statusCode: 200,
-        data: result
     }
 })
 

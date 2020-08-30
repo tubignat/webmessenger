@@ -6,20 +6,26 @@ import {
 } from 'react-router-dom';
 import {Landing} from "./landing/Landing";
 import {Chat} from "./chat/Chat";
-console.log("123")
+import styled from "styled-components";
+
+const GlobalContainer = styled.div`
+    user-select: none;
+`
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <Route path='/' exact>
-                    <Landing/>
-                </Route>
-                <Route path='/'>
-                    <Chat/>
-                </Route>
-            </Switch>
-        </Router>
+        <GlobalContainer>
+            <Router>
+                <Switch>
+                    <Route path='/' exact>
+                        <Landing/>
+                    </Route>
+                    <Route path='/'>
+                        <Chat/>
+                    </Route>
+                </Switch>
+            </Router>
+        </GlobalContainer>
     );
 }
 
