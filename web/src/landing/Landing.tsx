@@ -6,8 +6,8 @@ import styled from "styled-components";
 import {Gap} from "../components/Gap";
 import {Colors} from "../common/Colors";
 import {OptionalPreferences} from "./OptionalPreferences";
-import {Api} from "../common/Api";
 import {GlobalShortcutManager, Keys} from "../common/ShortcutManager";
+import {GlobalChatStorage} from "../common/storage/ChatStorageImpl";
 
 const Container = styled.div`
     padding: 80px;
@@ -73,13 +73,9 @@ export function Landing() {
     function createChat() {
         const chatKey = userPreferences.key ? userPreferences.key : defaultPreferences.key
         const chatName = userPreferences.name ? userPreferences.name : defaultPreferences.name
-        Api.createChat(chatKey, chatName)
-            .then(resp => {
-                if (resp.ok)
-                    setRedirectTo('/' + chatKey)
-                else
-                    alert('Error occurred')
-            })
-            .catch((e) => alert(e))
+
+        GlobalChatStorage.createChat(chatKey, chatName)
+            .then(() => setRedirectTo('/' + chatKey))
+            .catch(alert)
     }
 }

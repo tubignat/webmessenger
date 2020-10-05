@@ -19,9 +19,9 @@ export class ChatServiceImpl implements ChatService {
 
     getMembers = (chatId: number): User[] => this.userRepository.getByChatId(chatId)
 
-    sendMessage = (key: string, text: string, userId: number) => {
+    sendMessage = (key: string, text: string, userId: number): Message => {
         const chat = this.chatRepository.getByKey(key)
-        this.msgRepository.add(text, userId, chat.id, new Date(), EventsIdSequence.get())
+        return this.msgRepository.add(text, userId, chat.id, new Date(), EventsIdSequence.get())
     }
 
     loadUpdates = (chatId: number, afterEventId: number) => {

@@ -8,7 +8,7 @@ export interface UserRepository {
 }
 
 export interface MessageRepository {
-    add: (text: string, userId: number, chatId: number, timestamp: Date, eventId: number) => number
+    add: (text: string, userId: number, chatId: number, timestamp: Date, eventId: number) => Message
     getAll: (chatId: number, afterEventId?: number) => Message[]
 }
 

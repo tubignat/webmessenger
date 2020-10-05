@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle, useRef, useState} from "react";
+import React, {forwardRef, useEffect, useImperativeHandle, useRef, useState} from "react";
 import styled from "styled-components";
 import {Colors} from "../common/Colors";
 
@@ -78,9 +78,13 @@ function TextAreaInner(props: InputProps, ref: any) {
     const inputRef = useRef<HTMLTextAreaElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
     const [height, setHeight] = useState('')
+
     useImperativeHandle(ref, () => ({
         focus: () => inputRef?.current?.focus()
     }));
+
+    useEffect(resize, [props.value])
+
     return <InputContainer
         ref={containerRef}
         invalid={props.invalid ?? false}
@@ -107,14 +111,22 @@ function TextAreaInner(props: InputProps, ref: any) {
         const value = props.charLimit && area.value.length > props.charLimit
             ? area.value.slice(0, props.charLimit)
             : area.value
-        area.value = value
 
         if (isValid(value, props.shouldMatchRegex, props.customIsAllowed)) {
+            props.onChange(value)
+        }
+    }
+
+    function resize() {
+        const area = inputRef.current
+        if (!area) {
+            throw Error("textarea ref was null at resize")
+        }
+
+        if (isValid(props.value, props.shouldMatchRegex, props.customIsAllowed)) {
             area.style.height = 'auto'
             area.style.height = area.scrollHeight + 'px'
             setHeight((area.scrollHeight + 20) + 'px')
-
-            props.onChange(value)
         }
     }
 }

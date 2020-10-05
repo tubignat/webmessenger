@@ -1,21 +1,30 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {WelcomeDialog} from "./WelcomeDialog";
-import {ChatData, GlobalChatStorage} from "../common/ChatStorage";
 import {ChatRoom} from "./room/ChatRoom";
+import {GlobalChatStorage} from "../common/storage/ChatStorageImpl";
+import {ChatDescriptor, User} from "../common/storage/ChatStorage";
 
 export function Chat() {
     const chatKey = useMemo(getChatKey, [])
-    const [chatData, setChatData] = useState<ChatData | null>(GlobalChatStorage.get(chatKey))
+    const [chatDescriptor, setChatDescriptor] = useState<ChatDescriptor | null>(null)
+    const [myUser, setMyUser] = useState<User | undefined>(undefined)
 
     useEffect(() => {
-        GlobalChatStorage.subscribe({chatKey: chatKey, callback: setChatData})
-    }, [])
+        GlobalChatStorage.getOrLoadChatDescriptor(chatKey).then(desc => {
+            setChatDescriptor(desc)
+            setMyUser(desc.myUser)
+        })
+    }, [chatKey])
 
-    if (chatData?.meta && chatData.myUser) {
-        return <ChatRoom chatData={chatData} />
+    if (!chatDescriptor) {
+        return <div/>
     }
 
-    return <WelcomeDialog chatKey={chatKey} chatData={chatData}/>
+    if (myUser) {
+        return <ChatRoom chatKey={chatKey}/>
+    }
+
+    return <WelcomeDialog chatDescriptor={chatDescriptor} onJoinChat={onJoinChat}/>
 
     function getChatKey() {
         const result = new RegExp('^/([a-zA-Zа-яА-Я0-9-_.]+)/?').exec(window.location.pathname)
@@ -24,5 +33,13 @@ export function Chat() {
         }
 
         return ''
+    }
+
+    function onJoinChat(chosenName: string) {
+        GlobalChatStorage
+            .joinChat(chatKey, chosenName)
+            .then(() => {
+                setMyUser(GlobalChatStorage.getMyUser(chatKey))
+            })
     }
 }

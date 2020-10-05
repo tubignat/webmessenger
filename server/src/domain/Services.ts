@@ -6,6 +6,6 @@ export interface ChatService {
     loadChatMeta: (key: string) => Chat
     joinChat: (chatId: number, name: string) => User
     getMembers: (chatId: number) => User[]
-    sendMessage: (key: string, text: string, userId: number) => void
+    sendMessage: (key: string, text: string, userId: number) => Message
     loadUpdates: (chatId: number, afterEventId: number) => Updates
 }

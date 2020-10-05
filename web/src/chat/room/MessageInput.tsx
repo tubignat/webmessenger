@@ -21,7 +21,6 @@ export function MessageInput({sendMessage}: {sendMessage: (msg: string) => void}
 
     return <Column>
         <Row alignItems='flex-end'>
-            <Gap size={44}/>
             <TextArea
                 ref={inputRef}
                 value={message}

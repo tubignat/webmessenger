@@ -8,7 +8,7 @@ import {SidebarMenuBlock} from "./SidebarMenuBlock";
 import {Gapped} from "../../components/Gapped";
 import {Member} from "./Member";
 import {A} from "../../components/A";
-import {User} from "../../common/Api";
+import {UserContract} from "../../common/Api";
 import {GlobalShortcutManager, Keys} from "../../common/ShortcutManager";
 
 const SidebarContainer = styled.div`
@@ -22,7 +22,7 @@ const SidebarContainer = styled.div`
     position: fixed;
 `
 
-export function Sidebar(props: { chatName: string, chatKey: string, members: User[], myUserId: number }) {
+export function Sidebar(props: { chatName: string, chatKey: string, members: UserContract[], myUserId: number }) {
 
     const [searchQuery, setSearchQuery] = useState('')
     const searchRef = useRef<HTMLInputElement>(null)

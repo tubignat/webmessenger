@@ -58,11 +58,11 @@ export const joinChat = controller([responseHeaderMiddleware, exceptionMiddlewar
 export const sendMessage = controller([responseHeaderMiddleware, exceptionMiddleware], context => {
     const {key, text, userId} = JSON.parse(context.request.body)
 
-    service.sendMessage(key.toLowerCase(), text, userId)
+    const msg = service.sendMessage(key.toLowerCase(), text, userId)
 
     return {
         statusCode: 200,
-        data: null
+        data: msg
     }
 })
 

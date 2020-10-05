@@ -1,6 +1,6 @@
 const baseURL = 'http://localhost:4000'
 
-export interface Message {
+export interface MessageContract {
     id: number
     text: string
     userId: number
@@ -8,28 +8,28 @@ export interface Message {
     timestamp: Date
 }
 
-export interface Chat {
+export interface ChatContract {
     id: number
     key: string
     name: string
     created: Date
 }
 
-export interface User {
+export interface UserContract {
     id: number
     name: string
     created: Date
 }
 
 export interface JoinChatResponse {
-    user: User
+    user: UserContract
     token: string
 }
 
 export interface LoadUpdatesResponse {
-    meta?: Chat
-    members: User[]
-    messages: Message[]
+    meta?: ChatContract
+    members: UserContract[]
+    messages: MessageContract[]
     latestEventId: number
 }
 
@@ -41,11 +41,11 @@ export const Api = {
         })
     },
 
-    sendMessage: (key: string, userId: number, text: string) => {
+    sendMessage: (key: string, userId: number, text: string): Promise<MessageContract> => {
         return fetch(`${baseURL}/api/sendMessage`, {
             method: 'POST',
             body: JSON.stringify({key: key, userId: userId, text: text})
-        })
+        }).then(response => response.json())
     },
 
     joinChat: (chatId: number, name: string): Promise<JoinChatResponse> => {
@@ -55,7 +55,7 @@ export const Api = {
         }).then(response => response.json())
     },
 
-    loadChatMeta: (key: string): Promise<Chat> => {
+    loadChatMeta: (key: string): Promise<ChatContract> => {
         return fetch(`${baseURL}/api/loadChatMeta?key=${key}`).then(response => response.json())
     },
 

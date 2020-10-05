@@ -48,7 +48,7 @@ export class InMemoryMessageRepository implements MessageRepository {
     private messages: Message[] = []
     private sequence = new InMemorySequence()
 
-    add(text: string, userId: number, chatId: number, timestamp: Date, eventId: number): number {
+    add(text: string, userId: number, chatId: number, timestamp: Date, eventId: number): Message {
         const newMessage: Message = {
             id: this.sequence.get(),
             text: text,
@@ -59,7 +59,7 @@ export class InMemoryMessageRepository implements MessageRepository {
         }
         this.messages.push(newMessage)
 
-        return newMessage.id;
+        return newMessage;
     }
 
     getAll(chatId: number, afterEventId?: number): Message[] {

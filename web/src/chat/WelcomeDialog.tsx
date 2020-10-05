@@ -3,9 +3,7 @@ import {Gap} from "../components/Gap";
 import styled from "styled-components";
 import {Colors} from "../common/Colors";
 import {WelcomeDialogCard} from "./WelcomeDialogCard";
-import {Api, Chat} from "../common/Api";
-import {ChatData, GlobalChatStorage} from "../common/ChatStorage";
-import {throws} from "assert";
+import {ChatDescriptor} from "../common/storage/ChatStorage";
 
 const Container = styled.div`
     padding: 80px;
@@ -29,23 +27,13 @@ const Description = styled.div`
 `
 
 interface WelcomeDialogProps {
-    chatKey: string
-    chatData: ChatData | null
+    chatDescriptor: ChatDescriptor
+    onJoinChat: (chosenName: string) => void
 }
 
 export function WelcomeDialog(props: WelcomeDialogProps) {
     const defaultName = useMemo(() => 'Anonymous Cat', [])
     const [name, setName] = useState('')
-
-    useEffect(() => {
-        if (!props.chatData?.meta) {
-            Api.loadChatMeta(props.chatKey).then(chat =>
-                GlobalChatStorage.update(props.chatKey, {
-                    meta: {id: chat.id, key: chat.key, name: chat.name, created: chat.created}
-                })
-            )
-        }
-    }, [props.chatData, props.chatKey])
 
     return <Container>
         <Header>WebChat</Header>
@@ -56,30 +44,14 @@ export function WelcomeDialog(props: WelcomeDialogProps) {
 
         <Gap size={64}/>
 
-        {
-            !props.chatData?.meta && "Loading..."
-        }
-        {
-            props.chatData?.meta && <WelcomeDialogCard
-                name={name}
-                defaultName={defaultName}
-                onNameChange={value => setName(value)}
-                chatName={props.chatData.meta.name}
-                chatKey={props.chatData.meta.key}
-                onJoinClick={
-                    async () => {
-                        const chosenName = name ? name : defaultName
-                        if (props.chatData?.meta?.id === null || props.chatData?.meta?.id === undefined) {
-                            throw Error("Chat Id was null when clicked 'Join'")
-                        }
-                        const response = await Api.joinChat(props.chatData.meta.id, chosenName)
-                        GlobalChatStorage.update(props.chatKey, {
-                            myUser: {...response.user, token: response.token},
-                        })
-                    }
-                }
-            />
-        }
+        <WelcomeDialogCard
+            name={name}
+            defaultName={defaultName}
+            onNameChange={value => setName(value)}
+            chatName={props.chatDescriptor.name}
+            chatKey={props.chatDescriptor.key}
+            onJoinClick={() => props.onJoinChat(name ? name : defaultName)}
+        />
     </Container>
 }
 
