@@ -5,6 +5,7 @@ import {Gap} from "../components/Gap";
 import {Input} from "../components/Input";
 import {Api} from "../common/Api";
 import {debounce} from "../common/Debounce";
+import {host} from "../common/DefaultPreferences";
 
 const linkRegex = new RegExp('^[a-zA-Z0-9а-яА-Я][a-zA-Z0-9а-яА-Я-_.]*$')
 const nameRegex = new RegExp('^[a-zA-Z0-9а-яА-Я-_.,()@ ]*$')
@@ -61,7 +62,7 @@ export function OptionalPreferences(props: OptionalPreferencesProps) {
             value={props.userPreferences.key}
             onChange={onLinkChange}
             invalid={!isKeyAvailable}
-            prefix='webchat.com/'
+            prefix={ `${host}/` }
             placeholder={props.defaultPreferences.key}
             charLimit={255}
             shouldMatchRegex={linkRegex}
@@ -82,17 +83,17 @@ export function OptionalPreferences(props: OptionalPreferencesProps) {
             width={inputsWidth}
         />
 
-        <Gap size={24}/>
+        {/*<Gap size={24}/>*/}
 
-        <Input
-            label='Password'
-            value={props.userPreferences.password}
-            onChange={value => props.onChange({...props.userPreferences, password: value})}
-            charLimit={255}
-            placeholder={props.defaultPreferences.password}
-            type='password'
-            width={inputsWidth}
-        />
+        {/*<Input*/}
+        {/*    label='Password'*/}
+        {/*    value={props.userPreferences.password}*/}
+        {/*    onChange={value => props.onChange({...props.userPreferences, password: value})}*/}
+        {/*    charLimit={255}*/}
+        {/*    placeholder={props.defaultPreferences.password}*/}
+        {/*    type='password'*/}
+        {/*    width={inputsWidth}*/}
+        {/*/>*/}
     </Container>
 
     function isKeyAllowed(key: string): boolean {

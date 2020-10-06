@@ -21,7 +21,7 @@ interface Subscription {
 }
 
 class ChatStorageImpl implements ChatStorage {
-    private units: ChatStorageUnit[]
+    private readonly units: ChatStorageUnit[]
     private subscriptions: Subscription[] = []
 
     constructor() {
@@ -29,7 +29,14 @@ class ChatStorageImpl implements ChatStorage {
             .filter(key => key.startsWith("chat_"))
             .map(key => {
                 const item = window.localStorage.getItem(key)
-                return item ? JSON.parse(item) as ChatStorageUnit : null
+                const unit = item ? JSON.parse(item) as ChatStorageUnit : null
+                if (unit) {
+                    unit.messages.forEach(msg => {
+                        msg.timestamp = new Date(msg.timestamp)
+                    })
+                }
+
+                return unit
             })
             .filter(unit => !!unit) as ChatStorageUnit[]
     }
@@ -142,7 +149,7 @@ class ChatStorageImpl implements ChatStorage {
             .sendMessage(unit.key, unit.myUser.id, message)
             .then(msg => {
                 newMessage.id = msg.id
-                newMessage.timestamp = msg.timestamp
+                newMessage.timestamp = new Date(msg.timestamp)
                 newMessage.optimisticUpdateStatus = 'sent'
 
                 unit.messages = [...unit.messages]
@@ -208,16 +215,16 @@ class ChatStorageImpl implements ChatStorage {
     }
 
     private mergeMessages(unit: ChatStorageUnit, messages: MessageContract[]): Message[] {
-        const newMessages = messages.map(msg => {
-            const user = unit.members?.find(m => m.id === msg.userId)
+        const newMessages = messages.map(msgContract => {
+            const user = unit.members?.find(m => m.id === msgContract.userId)
             if (!user) {
-                console.error(`Could not find userId ${msg.userId} among chat members`)
+                console.error(`Could not find userId ${msgContract.userId} among chat members`)
                 return null
             }
             return {
-                id: msg.id,
-                text: msg.text,
-                timestamp: msg.timestamp,
+                id: msgContract.id,
+                text: msgContract.text,
+                timestamp: new Date(msgContract.timestamp),
                 optimisticUpdateStatus: 'merged',
                 user: user
             }

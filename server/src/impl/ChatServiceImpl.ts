@@ -15,7 +15,15 @@ export class ChatServiceImpl implements ChatService {
 
     loadChatMeta = (key: string) => this.chatRepository.getByKey(key)
 
-    joinChat = (chatId: number, name: string): User => this.userRepository.add(name, chatId, new Date(), EventsIdSequence.get())
+    joinChat = (chatId: number, name: string): User => {
+        const avatarColors = [
+            '#88C18E', '#9374D6', '#76B2D3', '#E9AFAF', '#4C8663', '#DE0000', '#B0AFE9', '#AFDBE9', '#DFD600', '#007AFF',
+            '#AFE9D4', '#00D8F5', '#903737'
+        ]
+
+        const userNumber = this.userRepository.getByChatId(chatId).length
+        return this.userRepository.add(name, chatId, new Date(), avatarColors[userNumber], EventsIdSequence.get())
+    }
 
     getMembers = (chatId: number): User[] => this.userRepository.getByChatId(chatId)
 

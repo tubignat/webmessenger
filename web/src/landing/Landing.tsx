@@ -32,7 +32,7 @@ const Description = styled.div`
 
 export function Landing() {
     const defaultPreferences = useMemo(() => {
-        return {key: generateKey(), name: generateName(), password: ''}
+        return {key: generateKey(), name: generateName(true), password: ''}
     }, [])
     const [redirectTo, setRedirectTo] = useState('')
     const [userPreferences, setUserPreferences] = useState({key: '', name: '', password: ''})

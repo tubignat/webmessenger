@@ -3,6 +3,7 @@ import {Centered} from "./Centered";
 import React from "react";
 import styled from "styled-components";
 import {Colors} from "../common/Colors";
+import {host} from "../common/DefaultPreferences";
 
 const GroupPicture = styled.div`
     width: 64px;
@@ -33,6 +34,6 @@ export function ChatHeader(props: {chatName: string, chatKey: string}) {
 
         <Gap size={4}/>
 
-        <GroupLink>webchat.com/{props.chatKey}</GroupLink>
+        <GroupLink>{host}/{props.chatKey}</GroupLink>
     </Centered>
 }

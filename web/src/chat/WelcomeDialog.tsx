@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Colors} from "../common/Colors";
 import {WelcomeDialogCard} from "./WelcomeDialogCard";
 import {ChatDescriptor} from "../common/storage/ChatStorage";
+import {generateName} from "../common/DefaultPreferences";
 
 const Container = styled.div`
     padding: 80px;
@@ -32,7 +33,7 @@ interface WelcomeDialogProps {
 }
 
 export function WelcomeDialog(props: WelcomeDialogProps) {
-    const defaultName = useMemo(() => 'Anonymous Cat', [])
+    const defaultName = useMemo(() => generateName(false), [])
     const [name, setName] = useState('')
 
     return <Container>

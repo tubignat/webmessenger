@@ -40,7 +40,7 @@ export function Sidebar(props: { chatName: string, chatKey: string, members: Use
         <SidebarMenuBlock header='Members'>
             <Gapped>
                 {
-                    props.members.map(m => <Member key={m.id} name={m.name} isMe={m.id === props.myUserId}/>)
+                    props.members.map(m => <Member key={m.id} avatar={m.avatar} name={m.name} isMe={m.id === props.myUserId}/>)
                 }
             </Gapped>
         </SidebarMenuBlock>

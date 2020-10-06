@@ -19,6 +19,7 @@ export interface UserContract {
     id: number
     name: string
     created: Date
+    avatar: string
 }
 
 export interface JoinChatResponse {
@@ -45,7 +46,8 @@ export const Api = {
         return fetch(`${baseURL}/api/sendMessage`, {
             method: 'POST',
             body: JSON.stringify({key: key, userId: userId, text: text})
-        }).then(response => response.json())
+        })
+            .then(response => response.json())
     },
 
     joinChat: (chatId: number, name: string): Promise<JoinChatResponse> => {
@@ -64,6 +66,7 @@ export const Api = {
     },
 
     loadUpdates: (chatId: number, afterEventId: number): Promise<LoadUpdatesResponse> => {
-        return fetch(`${baseURL}/api/loadUpdates?chatId=${chatId}&afterEventId=${afterEventId}`).then(response => response.json())
+        return fetch(`${baseURL}/api/loadUpdates?chatId=${chatId}&afterEventId=${afterEventId}`)
+            .then(response => response.json())
     }
 }

@@ -6,12 +6,13 @@ export class InMemoryUserRepository implements UserRepository {
     private users: User[] = []
     private sequence = new InMemorySequence()
 
-    add(name: string, chatId: number, created: Date, eventId: number): User {
+    add(name: string, chatId: number, created: Date, avatar: string, eventId: number): User {
         const newUser: User = {
             id: this.sequence.get(),
             name: name,
             created: created,
             chatId: chatId,
+            avatar: avatar,
             eventId: eventId
         }
         this.users.push(newUser)

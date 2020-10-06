@@ -3,6 +3,7 @@ export interface User {
     chatId: number
     name: string
     created: Date
+    avatar: string
     eventId: number
 }
 

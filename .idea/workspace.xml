@@ -14,10 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1d48469-6168-4ecd-9c4b-a96e9dc99a7d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/Controllers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/Controllers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/domain/Entities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Entities.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/domain/Repositories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Repositories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/domain/Services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Services.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/impl/ChatServiceImpl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/impl/ChatServiceImpl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/impl/Repositories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/impl/Repositories.ts" afterDir="false" />
     </list>
@@ -59,15 +62,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/chat/room" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/web/src/common" />
       <recent name="$PROJECT_DIR$/web/src/chat/room" />
       <recent name="$PROJECT_DIR$/web/src/chat" />
       <recent name="$PROJECT_DIR$/web/src/domain" />
-      <recent name="$PROJECT_DIR$/web/src/Landing" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/src/chat/room" />
     </key>
   </component>
   <component name="RunManager" selected="npm.webapp">
@@ -89,6 +92,14 @@
       </method>
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="build/index.js" working-dir="$PROJECT_DIR$/server">
+      <method v="2" />
+    </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="server/Dockerfile" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.grunt">
@@ -128,7 +139,13 @@
     <list>
       <item itemvalue="Node.js.Server" />
       <item itemvalue="npm.webapp" />
+      <item itemvalue="Docker.Dockerfile" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -154,6 +171,7 @@
       <workItem from="1601490415200" duration="14000" />
       <workItem from="1601490446793" duration="196000" />
       <workItem from="1601801082850" duration="22631000" />
+      <workItem from="1601971428296" duration="10540000" />
     </task>
     <servers />
   </component>
@@ -177,14 +195,15 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="880" y="368" key="#Plugins/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1597769719264" />
-    <state x="356" y="449" width="1071" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599326392476">
-      <screen x="0" y="0" width="2560" height="1440" />
-    </state>
-    <state x="356" y="449" width="1071" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599326392476" />
-    <state x="700" y="411" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601820893644">
+    <state x="249" y="349" width="794" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602002067474">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="700" y="411" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1601820893644" />
+    <state x="249" y="349" width="794" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1602002067474" />
+    <state x="356" y="449" width="1071" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599326392476" />
+    <state x="700" y="411" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602001066658">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="700" y="411" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1602001066658" />
     <state x="1000" y="529" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598466336857" />
     <state x="1067" y="432" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1597832688652">
       <screen x="0" y="0" width="2560" height="1440" />
@@ -204,28 +223,28 @@
     </state>
     <state x="713" y="369" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1601811699315" />
     <state x="1018" y="474" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1597846382095" />
-    <state width="1771" height="318" key="GridCell.Tab.0.bottom" timestamp="1601887776171">
+    <state width="1771" height="318" key="GridCell.Tab.0.bottom" timestamp="1602002018594">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="318" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1601887776171" />
+    <state width="1771" height="318" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1602002018594" />
     <state width="2539" height="264" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599328572631" />
     <state width="2539" height="264" key="GridCell.Tab.0.bottom/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912150" />
-    <state width="1771" height="318" key="GridCell.Tab.0.center" timestamp="1601887776170">
+    <state width="1771" height="318" key="GridCell.Tab.0.center" timestamp="1602002018593">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="318" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1601887776170" />
+    <state width="1771" height="318" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1602002018593" />
     <state width="2539" height="264" key="GridCell.Tab.0.center/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599328572630" />
     <state width="2539" height="264" key="GridCell.Tab.0.center/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912148" />
-    <state width="1771" height="318" key="GridCell.Tab.0.left" timestamp="1601887776169">
+    <state width="1771" height="318" key="GridCell.Tab.0.left" timestamp="1602002018592">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="318" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1601887776169" />
+    <state width="1771" height="318" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1602002018592" />
     <state width="2539" height="264" key="GridCell.Tab.0.left/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599328572629" />
     <state width="2539" height="264" key="GridCell.Tab.0.left/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912147" />
-    <state width="1771" height="318" key="GridCell.Tab.0.right" timestamp="1601887776170">
+    <state width="1771" height="318" key="GridCell.Tab.0.right" timestamp="1602002018593">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="318" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1601887776170" />
+    <state width="1771" height="318" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1602002018593" />
     <state width="2539" height="264" key="GridCell.Tab.0.right/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1599328572630" />
     <state width="2539" height="264" key="GridCell.Tab.0.right/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598806912149" />
     <state width="2539" height="520" key="GridCell.Tab.1.bottom" timestamp="1597907340650">
@@ -296,10 +315,10 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="820" y="456" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1597832540691" />
-    <state x="687" y="274" width="568" height="572" key="find.popup" timestamp="1601806001773">
+    <state x="687" y="274" width="568" height="572" key="find.popup" timestamp="1601999829518">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="687" y="274" width="568" height="572" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1601806001773" />
+    <state x="687" y="274" width="568" height="572" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1601999829518" />
     <state x="981" y="352" width="598" height="735" key="find.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598182248673" />
     <state x="662" y="226" key="run.anything.popup" timestamp="1601815367685">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -307,10 +326,10 @@
     <state x="662" y="226" key="run.anything.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1601815367685" />
     <state x="945" y="291" key="run.anything.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598711255835" />
     <state x="945" y="291" key="run.anything.popup/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1598527967151" />
-    <state x="662" y="257" width="670" height="526" key="search.everywhere.popup" timestamp="1601884646733">
+    <state x="662" y="257" width="670" height="526" key="search.everywhere.popup" timestamp="1602003343369">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="662" y="257" width="670" height="526" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1601884646733" />
+    <state x="662" y="257" width="670" height="526" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1602003343369" />
     <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.0.2560.1440/2560.320.1792.1120@0.0.2560.1440" timestamp="1598807446589" />
     <state x="945" y="331" width="670" height="676" key="search.everywhere.popup/0.23.2560.1417/2560.343.1792.1097@0.23.2560.1417" timestamp="1597832315480" />
   </component>

@@ -3,7 +3,7 @@ import {Chat, Message, User} from "./Entities";
 export interface UserRepository {
     get: (id: number) => User
     getByChatId: (chatId: number, afterEventId?: number) => User[]
-    add: (name: string, chatId: number, created: Date, eventId: number) => User
+    add: (name: string, chatId: number, created: Date, avatar: string, eventId: number) => User
     update: (id: number, name: string, eventId: number) => void
 }
 

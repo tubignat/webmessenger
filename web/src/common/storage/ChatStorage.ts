@@ -12,6 +12,7 @@ export interface User {
     id: number
     name: string
     created: Date
+    avatar: string
 }
 
 export interface ChatDescriptor {

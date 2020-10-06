@@ -8,14 +8,19 @@ import {Spring} from "../../components/Spring";
 
 interface MemberProps {
     name: string
+    avatar: string
     isMe: boolean
 }
 
-const MemberPicture = styled.div`
+interface MemberPictureProps {
+    avatar: string
+}
+
+const MemberPicture = styled.div<MemberPictureProps>`
     width: 36px;
     height: 36px;
     border-radius: 36px;
-    background-color: #E9AFAF;
+    background-color: ${props => props.avatar};
     flex-shrink: 0;
 `
 
@@ -44,7 +49,7 @@ const Me = styled.div`
 
 export function Member(props: MemberProps) {
     return <Row>
-        <MemberPicture/>
+        <MemberPicture avatar={props.avatar}/>
         <Gap size={12}/>
         <Column height='36px'>
             <Row>
