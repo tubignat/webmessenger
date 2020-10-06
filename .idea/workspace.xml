@@ -14,15 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1d48469-6168-4ecd-9c4b-a96e9dc99a7d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/domain/Entities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Entities.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/domain/Repositories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/domain/Repositories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/impl/ChatServiceImpl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/impl/ChatServiceImpl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/impl/Repositories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/impl/Repositories.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +163,7 @@
       <workItem from="1601490415200" duration="14000" />
       <workItem from="1601490446793" duration="196000" />
       <workItem from="1601801082850" duration="22631000" />
-      <workItem from="1601971428296" duration="10540000" />
+      <workItem from="1601971428296" duration="10553000" />
     </task>
     <servers />
   </component>
