@@ -5,7 +5,7 @@ export function exceptionMiddleware(context: RequestContext, next: (context: Req
 
         return next(context)
 
-    } catch (e) {
+    } catch (e: any) {
         console.error(e)
         return {
             statusCode: 500,
